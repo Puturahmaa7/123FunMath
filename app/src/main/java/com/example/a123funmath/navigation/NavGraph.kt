@@ -5,9 +5,13 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.a123funmath.screen.BelajarDanKuisPenjumlahanPuluhan
+import com.example.a123funmath.screen.BelajarDanKuisPenjumlahanSampai10
 import com.example.a123funmath.screen.HomeScreen
-import com.example.a123funmath.screen.PenjumlahanSampai10Screen
-import com.example.a123funmath.screen.PenjumlahanPuluhanScreen
+import com.example.a123funmath.screen.MetodePenjumlahanPuluhan
+import com.example.a123funmath.screen.MetodePenjumlahanSampai10
+import com.example.a123funmath.screen.BelajarDanKuisPenjumlahanSampai10
+import com.example.a123funmath.screen.BelajarDanKuisPenjumlahanPuluhan
 
 @Composable
 fun NavGraph() {
@@ -23,12 +27,20 @@ fun NavGraph() {
             HomeScreen(navController)
         }
 
-        composable("penjumlahan_sampai_10") {
-            PenjumlahanSampai10Screen(navController)
+        composable("metode_penjumlahan_sampai_10") {
+            MetodePenjumlahanSampai10(navController)
         }
 
-        composable("penjumlahan_puluhan") {
-            PenjumlahanPuluhanScreen(navController)
+        composable("metode_penjumlahan_puluhan") {
+            MetodePenjumlahanPuluhan()
+        }
+
+        composable("belajar_dan_kuis_penjumlahan_puluhan") {
+            BelajarDanKuisPenjumlahanPuluhan()
+        }
+
+        composable("belajar_dan_kuis_penjumlahan_sampai_10") {
+            BelajarDanKuisPenjumlahanSampai10(navController)
         }
     }
 }

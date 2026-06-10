@@ -12,42 +12,25 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.a123funmath.R
+import com.example.a123funmath.model.MateriItem
 import com.example.a123funmath.ui.theme.component.Button
 
-data class BookItem(
-    val title: String,
-    val imageRes: Int,
-    val route: String
-)
-
 @Composable
-fun HomeScreen(navController: NavController) {
+fun MateriScreen(
+    navController: NavController,
+    materi: MateriItem
+) {
 
-    val books = listOf(
-        BookItem(
-            title = "Penjumlahan Sampai 10",
-            imageRes = R.drawable.penjumlahan_sampai_10,
-            route = "metode_penjumlahan_sampai_10"
-        ),
-        BookItem(
-            title = "Penjumlahan Puluhan",
-            imageRes = R.drawable.penjumlahan_puluhan,
-            route = "metode_penjumlahan_puluhan"
-        )
-    )
-
-    var currentBookIndex by remember {
+    var currentIndex by remember {
         mutableIntStateOf(0)
     }
 
-    val currentBook = books[currentBookIndex]
+    val currentCard = materi.cards[currentIndex]
 
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
+    Box(modifier = Modifier.fillMaxSize()) {
 
         Image(
-            painter = painterResource(R.drawable.background_home),
+            painter = painterResource(materi.background),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
@@ -58,36 +41,55 @@ fun HomeScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Image(
-                painter = painterResource(R.drawable.text_123funmath),
-                contentDescription = null,
-                modifier = Modifier
-                    .padding(top = 30.dp)
-                    .size(500.dp, 100.dp),
-                contentScale = ContentScale.Fit
-            )
-
-            Spacer(modifier = Modifier.height(10.dp))
-
             Box(
                 modifier = Modifier
-                    .padding(bottom = 15.dp)
+                    .padding(bottom = 0.dp)
                     .fillMaxWidth()
                     .weight(2f),
                 contentAlignment = Alignment.Center
             ) {
 
+                Button(
+                    imageRes = R.drawable.tombol_kiri,
+                    size = 70,
+                    modifier = Modifier
+                        .align(Alignment.CenterStart)
+                        .padding(start = 20.dp),
+                    onClick = {
+                        navController.navigate("home")
+                    }
+                )
+
                 Image(
-                    painter = painterResource(currentBook.imageRes),
+                    painter = painterResource(materi.titleImage),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .fillMaxWidth()
+                        .height(120.dp),
+                    contentScale = ContentScale.Fit
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(3f),
+                contentAlignment = Alignment.Center
+            ) {
+
+                Image(
+                    painter = painterResource(currentCard.imageRes),
                     contentDescription = null,
                     modifier = Modifier
                         .size(800.dp, 850.dp)
+                        .padding(bottom = 20.dp)
                         .clickable {
-                            navController.navigate(currentBook.route)
+                            navController.navigate(currentCard.route)
                         }
                 )
 
-                if (currentBookIndex < books.lastIndex) {
+                if (currentIndex < materi.cards.lastIndex) {
                     Button(
                         imageRes = R.drawable.tombol_next_kanan,
                         size = 70,
@@ -95,12 +97,12 @@ fun HomeScreen(navController: NavController) {
                             .align(Alignment.CenterEnd)
                             .padding(end = 180.dp),
                         onClick = {
-                            currentBookIndex++
+                            currentIndex++
                         }
                     )
                 }
 
-                if (currentBookIndex > 0) {
+                if (currentIndex > 0) {
                     Button(
                         imageRes = R.drawable.tombol_next_kiri,
                         size = 70,
@@ -108,13 +110,11 @@ fun HomeScreen(navController: NavController) {
                             .align(Alignment.CenterStart)
                             .padding(start = 180.dp),
                         onClick = {
-                            currentBookIndex--
+                            currentIndex--
                         }
                     )
                 }
             }
-
-            Spacer(modifier = Modifier.height(20.dp))
         }
     }
 }
