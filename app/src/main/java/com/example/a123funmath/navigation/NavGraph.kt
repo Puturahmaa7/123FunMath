@@ -10,8 +10,6 @@ import com.example.a123funmath.screen.BelajarDanKuisPenjumlahanSampai10
 import com.example.a123funmath.screen.HomeScreen
 import com.example.a123funmath.screen.MetodePenjumlahanPuluhan
 import com.example.a123funmath.screen.MetodePenjumlahanSampai10
-import com.example.a123funmath.screen.BelajarDanKuisPenjumlahanSampai10
-import com.example.a123funmath.screen.BelajarDanKuisPenjumlahanPuluhan
 
 @Composable
 fun NavGraph() {
