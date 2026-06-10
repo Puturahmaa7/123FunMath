@@ -10,11 +10,11 @@ import androidx.compose.foundation.layout.size
 
 @Composable
 fun Button(
-imageRes: Int,
-contentDescription: String = "",
-onClick: () -> Unit,
-modifier: Modifier = Modifier,
-size: Int = 70
+    modifier: Modifier = Modifier,
+    imageRes: Int,
+    contentDescription: String = "",
+    onClick: () -> Unit,
+    size: Int = 70
 
 ) {
     Image(
